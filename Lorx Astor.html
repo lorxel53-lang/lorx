@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Lorx Astor 🛒</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    min-height:100vh;
+    overflow:hidden;
+    touch-action:manipulation;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:15px;
+}
+
+/* الكونتينر */
+
+.container{
+    width:100%;
+    max-width:500px;
+
+    text-align:center;
+}
+
+/* اسم القناة */
+
+.channel-name{
+    font-size:32px;
+    font-weight:bold;
+
+    margin-bottom:35px;
+
+    word-break:break-word;
+}
+
+/* التايمر */
+
+.timer{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:35px;
+}
+
+.time-box{
+
+    flex:1;
+
+    min-width:85px;
+    max-width:110px;
+
+    height:115px;
+
+    background:#101010;
+
+    border:2px solid #222;
+
+    border-radius:22px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:
+    0 0 15px rgba(255,255,255,0.05);
+}
+
+.time{
+    font-size:36px;
+    font-weight:bold;
+}
+
+.label{
+    margin-top:8px;
+
+    font-size:15px;
+
+    color:#999;
+}
+
+/* المتسابقين */
+
+.players{
+    display:flex;
+    flex-direction:column;
+
+    gap:14px;
+}
+
+.player{
+
+    width:100%;
+
+    background:#101010;
+
+    border:1px solid #222;
+
+    border-radius:18px;
+
+    padding:15px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 0 12px rgba(255,255,255,0.04);
+}
+
+.player-title{
+
+    color:#aaa;
+
+    font-size:16px;
+
+    white-space:nowrap;
+
+    margin-left:10px;
+}
+
+.player-name{
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+/* شاشات صغيرة */
+
+@media (max-width:480px){
+
+    body{
+        padding:10px;
+    }
+
+    .channel-name{
+        font-size:25px;
+        margin-bottom:28px;
+    }
+
+    .timer{
+        gap:7px;
+    }
+
+    .time-box{
+        min-width:75px;
+        height:100px;
+        border-radius:18px;
+    }
+
+    .time{
+        font-size:28px;
+    }
+
+    .label{
+        font-size:13px;
+    }
+
+    .player{
+        padding:13px;
+    }
+
+    .player-title{
+        font-size:14px;
+    }
+
+    .player-name{
+        font-size:15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- اسم القناة -->
+
+    <div class="channel-name">
+        Lorx Astor 🛒
+    </div>
+
+    <!-- التايمر -->
+
+    <div class="timer">
+
+        <div class="time-box">
+            <div class="time" id="hours">00</div>
+            <div class="label">ساعة</div>
+        </div>
+
+        <div class="time-box">
+            <div class="time" id="minutes">00</div>
+            <div class="label">دقيقة</div>
+        </div>
+
+        <div class="time-box">
+            <div class="time" id="seconds">00</div>
+            <div class="label">ثانية</div>
+        </div>
+
+    </div>
+
+    <!-- المتسابقين -->
+
+    <div class="players">
+
+        <div class="player">
+            <span class="player-title">
+                المتسابق الأول
+            </span>
+
+            <span class="player-name">
+                "Ali 👑❤️‍🩹"
+            </span>
+        </div>
+
+        <div class="player">
+            <span class="player-title">
+                المتسابق الثاني
+            </span>
+
+            <span class="player-name">
+                الـشناوي الـصغير 👑
+            </span>
+        </div>
+
+        <div class="player">
+            <span class="player-title">
+                المتسابق الثالث
+            </span>
+
+            <span class="player-name">
+                چًـااٌگــــٍـ ᡴꪫ˚⊁. 👑
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* وقت ثابت لكل الناس */
+
+const endTime = new Date("May 20, 2026 12:00:00").getTime();
+
+const hours = document.getElementById("hours");
+const minutes = document.getElementById("minutes");
+const seconds = document.getElementById("seconds");
+
+function updateTimer(){
+
+    const now = new Date().getTime();
+
+    const distance = endTime - now;
+
+    if(distance <= 0){
+
+        hours.innerHTML = "00";
+        minutes.innerHTML = "00";
+        seconds.innerHTML = "00";
+
+        return;
+    }
+
+    const h = Math.floor(distance / (1000 * 60 * 60));
+
+    const m = Math.floor(
+        (distance % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
+
+    const s = Math.floor(
+        (distance % (1000 * 60))
+        / 1000
+    );
+
+    hours.innerHTML = String(h).padStart(2,"0");
+    minutes.innerHTML = String(m).padStart(2,"0");
+    seconds.innerHTML = String(s).padStart(2,"0");
+}
+
+updateTimer();
+
+setInterval(updateTimer,1000);
+
+</script>
+
+</body>
+</html>
