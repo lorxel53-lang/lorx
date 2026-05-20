@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    background:#02010a;
+    position:relative;
+    font-family:Arial;
+}
+
+/* الخلفية */
+body::before{
+    content:"";
+    position:absolute;
+    width:300%;
+    height:300%;
+    top:-100%;
+    left:-100%;
+    z-index:0;
+    pointer-events:none;
+
+    background:
+    radial-gradient(circle at top right, rgba(255,0,140,0.35), transparent 20%),
+    radial-gradient(circle at bottom left, rgba(255,0,140,0.35), transparent 20%),
+    radial-gradient(circle at bottom right, rgba(0,140,255,0.35), transparent 20%),
+    radial-gradient(circle at left center, rgba(0,140,255,0.25), transparent 20%),
+    repeating-linear-gradient(135deg, transparent 0px, transparent 120px, rgba(0,180,255,0.15) 122px, transparent 124px),
+    repeating-linear-gradient(315deg, transparent 0px, transparent 120px, rgba(255,0,140,0.15) 122px, transparent 124px);
+
+    animation:bgMove 30s ease-in-out infinite;
+}
+
+@keyframes bgMove{
+    0%{transform:translate(0,0) rotate(0deg);}
+    50%{transform:translate(3%,3%) rotate(0.8deg);}
+    100%{transform:translate(0,0) rotate(0deg);}
+}
+
+/* اللوجو */
+.logo{
+    position:absolute;
+    top:25px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+    align-items:center;
+    font-size:32px;
+    color:white;
+    z-index:10;
+    text-shadow:0 0 10px #00aaff, 0 0 20px #ff008c;
+}
+
+.verified{
+    width:28px;height:28px;
+    border-radius:50%;
+    background:#ff0000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:15px;
+    box-shadow:0 0 10px red,0 0 20px red;
+}
+
+/* ===== المربع الجديد ===== */
+.race-box{
+    position:absolute;
+    top:120px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:90%;
+    max-width:360px;
+    height:60vh;
+    max-height:500px;
+
+    background:linear-gradient(180deg, rgba(0,140,255,0.25), rgba(255,0,100,0.25));
+    border:2px solid rgba(255,255,255,0.15);
+    border-radius:20px;
+
+    backdrop-filter:blur(8px);
+    z-index:10;
+
+    box-shadow:
+    0 0 20px rgba(0,140,255,0.4),
+    0 0 20px rgba(255,0,100,0.3);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:15px;
+    gap:12px;
+
+    overflow:auto;
+}
+
+/* عنوان */
+.race-title{
+    color:white;
+    font-size:18px;
+    text-shadow:0 0 10px cyan;
+}
+
+/* المتسابق */
+.player{
+    width:90%;
+    padding:12px;
+
+    background:rgba(0,0,0,0.35);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:12px;
+
+    color:white;
+    text-align:center;
+
+    box-shadow:0 0 10px rgba(0,140,255,0.2);
+}
+
+.player.red{
+    box-shadow:0 0 10px rgba(255,0,100,0.3);
+}
+
+.player.blue{
+    box-shadow:0 0 10px rgba(0,140,255,0.3);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="logo">
+    Lorx Astor <span class="verified">✔</span>
+</div>
+
+<!-- المربع -->
+<div class="race-box">
+
+    <div class="race-title">🏁 المتسابقين</div>
+
+    <div class="player blue">乂ATRツ๛ ¹</div>
+    <div class="player red">Alshenawy ²</div>
+    <div class="player blue">BOB ³</div>
+    <div class="player red">Essam Alkrwan ⁴</div>
+    <div class="player red">bablu ⁵</div>
+
+</div>
+
+</body>
+</html>
