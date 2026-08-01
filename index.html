@@ -1,3 +1,90 @@
+<!-- استدعاء خطين من Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+/* شاشة البداية */
+#splash {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+  transition: opacity 1.5s ease; /* هدوء عند الاختفاء */
+}
+
+.splash-text {
+  font-size:8vw;
+  font-family: 'Cinzel', serif; /* خط أنيق زي اللي في الصورة */
+  color:#8B0000; /* أحمر غامق */
+  text-shadow:0 0 20px #fff, 0 0 40px #8B0000;
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.splash-text span {
+  opacity:0;
+  position:absolute;
+  animation: moveToCenter 2s forwards;
+}
+
+.splash-text span:nth-child(1){top:-100%; left:10%; animation-delay:0.2s;}
+.splash-text span:nth-child(2){top:120%; left:20%; animation-delay:0.5s;}
+.splash-text span:nth-child(3){top:50%; left:-100%; animation-delay:0.8s;}
+.splash-text span:nth-child(4){top:30%; left:120%; animation-delay:0.11s;}
+.splash-text span:nth-child(5){top:-120%; left:50%; animation-delay:1s;}
+.splash-text span:nth-child(6){top:130%; left:70%; animation-delay:1.2s;}
+.splash-text span:nth-child(7){top:60%; left:-130%; animation-delay:1.4s;}
+.splash-text span:nth-child(8){top:40%; left:130%; animation-delay:1.6s;}
+.splash-text span:nth-child(9){top:-130%; left:30%; animation-delay:1.8s;}
+.splash-text span:nth-child(10){top:140%; left:40%; animation-delay:2s;}
+
+@keyframes moveToCenter {
+  to {
+    opacity:1;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+  }
+}
+
+/* النص تحت Lorx Astor */
+.splash-sub {
+  font-size:4vw;
+  margin-top:20vh;
+  color:#fff;
+  font-family: 'Pacifico', cursive; /* خط ملفوف */
+  opacity:0;
+  animation: fadeIn 2s forwards;
+  animation-delay:2.5s;
+}
+
+@keyframes fadeIn {
+  to { opacity:1; }
+}
+</style>
+
+<div id="splash">
+  <div class="splash-text">
+    <span>L</span><span>o</span><span>r</span><span>x</span>
+    <span> </span>
+    <span>A</span><span>s</span><span>t</span><span>o</span><span>r</span>
+  </div>
+  <div class="splash-sub">Ali Liex</div>
+</div>
+
+<script>
+// بعد 4 ثواني يخفي شاشة البداية بهدوء
+setTimeout(()=>{
+  const splash = document.getElementById("splash");
+  splash.style.opacity = "0";
+  setTimeout(()=>{ splash.style.display="none"; },1500);
+},5000);
+</script>
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
