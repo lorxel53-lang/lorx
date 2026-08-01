@@ -23,9 +23,9 @@ footer{margin-top:10vw;padding:4vw;background:#111;color:#aaa;border-top:1px sol
 .name-box{background:#222;padding:3vw;border-radius:10px;width:100%;max-width:500px;font-size:4vw;font-weight:bold;box-shadow:0 0 10px rgba(255,0,0,.4);display:flex;justify-content:space-between;align-items:center;}
 .admin-box{background:#222;padding:3vw;border-radius:10px;width:100%;max-width:500px;font-size:4vw;font-weight:bold;box-shadow:0 0 10px rgba(255,0,0,.4);display:flex;justify-content:center;align-items:center;}
 .admin-text img,.name-text img{
-  width:16px;   /* حجم العلامة */
+  width:16px;
   height:16px;
-  margin:0 2px; /* قريبة جدًا من الكلمة */
+  margin:0 2px;
   position:relative;
   top:2px;
 }
@@ -90,7 +90,7 @@ function updateTimer() {
 }
 updateTimer();
 
-// Toggle أسماء المشتركين (BOB يمين + مربع المتسابق الأول شمال + التوثيق شمال الاسم الإنجليزي)
+// Toggle أسماء المشتركين (BOB + Etalliano)
 let namesShown = false;
 function toggleNames(){
   const namesDiv = document.getElementById("namesList");
@@ -104,6 +104,12 @@ function toggleNames(){
         <div class="extra-square">المتسابق الأول</div>
         <div class="name-text">
           <img src="lorx.webp" alt="توثيق"> BOB
+        </div>
+      </div>
+      <div class="name-box">
+        <div class="extra-square">المتسابق الثاني</div>
+        <div class="name-text">
+          <img src="lorx.webp" alt="توثيق"> 𝑬𝒕𝒂𝒍𝒍𝒊𝒂𝒏𝒐
         </div>
       </div>`;
     namesDiv.innerHTML = listHTML;
