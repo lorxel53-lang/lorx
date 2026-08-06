@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Love Timer</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="phone">
+
+<h1 class="title">❤️ Love Timer</h1>
+
+<p class="subtitle">
+Since 16 July 2026
+</p>
+
+
+<div class="grid">
+
+
+<div class="card">
+<span id="years">0</span>
+<small>Years</small>
+</div>
+
+
+<div class="card">
+<span id="months">0</span>
+<small>Months</small>
+</div>
+
+
+<div class="card">
+<span id="weeks">0</span>
+<small>Weeks</small>
+</div>
+
+
+<div class="card">
+<span id="days">0</span>
+<small>Days</small>
+</div>
+
+
+<div class="card">
+<span id="hours">0</span>
+<small>Hours</small>
+</div>
+
+
+<div class="card">
+<span id="minutes">0</span>
+<small>Minutes</small>
+</div>
+
+
+<div class="card">
+<span id="seconds">0</span>
+<small>Seconds</small>
+</div>
+
+
+</div>
+
+  <a href="memories.html" class="memory-btn">
+❤️ Our Memories
+  </a>
+
+  <a href="chat.html" class="memory-btn">
+💬 Chat
+  </a>
+  
+</div>
+
+
+<script>
+
+const startDate = new Date("2026-07-16T00:00:00");
+
+
+function updateTimer(){
+
+const now = new Date();
+
+const diff = now - startDate;
+
+
+const years = Math.floor(diff/(1000*60*60*24*365));
+const months = Math.floor(diff/(1000*60*60*24*30));
+const weeks = Math.floor(diff/(1000*60*60*24*7));
+const days = Math.floor(diff/(1000*60*60*24));
+const hours = Math.floor(diff/(1000*60*60));
+const minutes = Math.floor(diff/(1000*60));
+const seconds = Math.floor(diff/1000);
+
+
+document.getElementById("years").innerHTML = years;
+document.getElementById("months").innerHTML = months;
+document.getElementById("weeks").innerHTML = weeks;
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("minutes").innerHTML = minutes;
+document.getElementById("seconds").innerHTML = seconds;
+
+
+}
+
+
+updateTimer();
+
+setInterval(updateTimer,1000);
+  
+</script>
+
+
+<script src="security.js"></script>
+
+
+</body>
+
+</html>

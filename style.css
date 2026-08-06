@@ -1,0 +1,656 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+}
+
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    radial-gradient(circle at top,#ff4fa3 0%,#0f0f0f 45%,#000 100%);
+}
+
+
+
+/* ===== Phone Frame ===== */
+
+.phone{
+
+    width:90vw;
+    max-width:390px;
+    height:90vh;
+
+    padding:30px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:50px;
+
+    box-shadow:
+    0 0 60px rgba(255,80,170,.35);
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+
+
+/* ===== Titles ===== */
+
+.title{
+
+    color:white;
+
+    font-size:34px;
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+}
+
+
+.subtitle{
+
+    color:#ddd;
+
+    font-size:18px;
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+
+
+/* ===== Buttons ===== */
+
+
+.memory-btn{
+
+    margin-top:30px;
+
+    text-decoration:none;
+
+    background:#ff4fa3;
+
+    color:white;
+
+    padding:14px 35px;
+
+    border-radius:18px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    box-shadow:0 0 30px #ff4fa3;
+
+    display:block;
+
+}
+
+
+
+/* ===== Timer Grid ===== */
+
+
+.grid{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+}
+
+
+.card{
+
+    height:120px;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    box-shadow:
+    0 0 25px rgba(255,80,170,.45);
+
+}
+
+
+
+.card:last-child{
+
+    grid-column:span 2;
+
+}
+
+
+
+.card span{
+
+    color:white;
+
+    font-size:38px;
+
+    font-weight:bold;
+
+}
+
+
+
+.card small{
+
+    color:#ddd;
+
+    font-size:17px;
+
+    margin-top:8px;
+
+}
+
+/* ===== Memories ===== */
+
+
+.photos{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    overflow-y:auto;
+
+}
+
+
+
+.photo{
+
+    height:150px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.1);
+
+    box-shadow:
+    0 0 25px rgba(255,80,170,.45);
+
+}
+
+
+
+.photo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+
+.photo.wide{
+
+    grid-column:span 2;
+
+    height:auto;
+
+}
+
+
+
+.photo.wide img{
+
+    height:auto;
+
+    object-fit:contain;
+
+}
+
+
+
+/* ===== Chat Header ===== */
+
+
+.chat-header{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    flex-shrink:0;
+
+}
+
+
+
+.user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+
+.avatar{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid #ff4fa3;
+
+    box-shadow:
+    0 0 15px #ff4fa3;
+
+}
+
+
+
+.user h2{
+
+    color:white;
+
+    font-size:20px;
+
+}
+
+
+
+.user span{
+
+    color:#bbb;
+
+    font-size:14px;
+
+}
+
+
+
+.actions{
+
+    display:flex;
+
+    gap:15px;
+
+    font-size:26px;
+
+    color:white;
+
+}
+
+
+
+/* ===== Messages Area ===== */
+
+
+.messages{
+
+    width:100%;
+
+    flex:1;
+
+    min-height:0;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+
+    background:
+    rgba(255,255,255,.08);
+
+
+    border-radius:25px;
+
+
+    border:1px solid rgba(255,255,255,.15);
+
+
+    scroll-behavior:smooth;
+
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+
+
+/* ===== Message Bubble ===== */
+
+
+.message-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+}
+
+
+
+.message{
+
+    max-width:75%;
+
+    padding:14px 18px;
+
+    color:white;
+
+    font-size:16px;
+
+    word-break:break-word;
+
+}
+
+
+
+.message.me{
+
+    align-self:flex-end;
+
+    background:#0A84FF;
+
+    border-radius:22px 22px 8px 22px;
+
+}
+
+
+
+.message.other{
+
+    align-self:flex-start;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:22px 22px 22px 8px;
+
+}
+
+
+
+.message-time{
+
+    color:#aaa;
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+
+
+.seen{
+
+    color:#0A84FF;
+
+    font-size:12px;
+
+}
+
+/* ===== Chat Input ===== */
+
+
+.chat-box{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:15px;
+
+    flex-shrink:0;
+
+}
+
+
+
+.chat-box input{
+
+    flex:1;
+
+    height:55px;
+
+    padding:0 18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:18px;
+
+
+    background:
+    rgba(255,255,255,.12);
+
+
+    color:white;
+
+    font-size:17px;
+
+
+    backdrop-filter:blur(10px);
+
+}
+
+
+
+.chat-box input::placeholder{
+
+    color:#bbb;
+
+}
+
+
+
+.chat-box button{
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:50%;
+
+
+    background:#0A84FF;
+
+
+    color:white;
+
+    font-size:22px;
+
+
+    cursor:pointer;
+
+
+    box-shadow:
+    0 0 20px rgba(10,132,255,.5);
+
+}
+
+
+
+/* ===== Scroll Bar ===== */
+
+
+.messages::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+
+
+.messages::-webkit-scrollbar-thumb{
+
+    background:#666;
+
+    border-radius:20px;
+
+}
+
+
+
+/* ===== Animation ===== */
+
+
+.message-container{
+
+    animation:showMessage .25s ease;
+
+}
+
+
+
+@keyframes showMessage{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ===== Mobile Fix ===== */
+
+
+@media(max-height:700px){
+
+
+    .phone{
+
+        height:100vh;
+
+        border-radius:0;
+
+    }
+
+
+}
+
+
+
+/* ===== Keyboard Support ===== */
+
+
+.phone{
+
+    transition:.25s ease;
+
+}
+
+
+
+.chat-box{
+
+    background:rgba(0,0,0,.15);
+
+    padding-top:10px;
+
+}
+
+
+
+/* ===== Prevent Page Move ===== */
+
+
+body{
+
+    overscroll-behavior:none;
+
+}
