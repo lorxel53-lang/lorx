@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+minimum-scale=1.0,
+user-scalable=no,
+viewport-fit=cover">
+
+<title>LOVE</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-user-select:none;
+    user-select:none;
+    -webkit-touch-callout:none;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    background:#000;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+    touch-action:manipulation;
+}
+
+
+/* =========================
+   الخلفية
+========================= */
+
+.matrix{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:0;
+    opacity:.28;
+    pointer-events:none;
+}
+
+.code{
+    position:absolute;
+    top:-250px;
+    color:#00ff66;
+    font-size:13px;
+    line-height:21px;
+    text-shadow:0 0 8px #00ff66;
+    white-space:nowrap;
+    animation:fall linear infinite;
+}
+
+.code:nth-child(1){left:2%;animation-duration:8s}
+.code:nth-child(2){left:13%;animation-duration:11s}
+.code:nth-child(3){left:25%;animation-duration:7s}
+.code:nth-child(4){left:38%;animation-duration:10s}
+.code:nth-child(5){left:51%;animation-duration:6s}
+.code:nth-child(6){left:64%;animation-duration:9s}
+.code:nth-child(7){left:77%;animation-duration:12s}
+.code:nth-child(8){left:90%;animation-duration:8s}
+
+@keyframes fall{
+
+    from{
+        transform:translateY(-250px);
+    }
+
+    to{
+        transform:translateY(120vh);
+    }
+
+}
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(0,255,100,.10),
+        transparent 55%
+    );
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+
+/* =========================
+   الصفحة الأولى
+========================= */
+
+.page{
+
+    position:relative;
+
+    z-index:5;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+.first-content{
+
+    width:100%;
+
+    max-width:400px;
+
+}
+
+
+/* =========================
+   الصورة الأولى
+========================= */
+
+.main-image{
+
+    position:relative;
+
+    width:240px;
+
+    height:240px;
+
+    margin:auto;
+
+    padding:7px;
+
+    border-radius:20px;
+
+    background:#050505;
+
+    box-shadow:
+    0 0 20px rgba(0,255,100,.5),
+    0 0 60px rgba(0,255,100,.2);
+
+    cursor:pointer;
+
+}
+
+
+.main-image::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-3px;
+
+    border:2px solid rgba(0,255,100,.45);
+
+    border-radius:23px;
+
+    box-shadow:
+    0 0 10px rgba(0,255,100,.25);
+
+}
+
+
+.main-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    display:block;
+
+    pointer-events:none;
+
+    -webkit-user-drag:none;
+
+}
+
+
+/* =========================
+   اضغط هنا
+========================= */
+
+.click{
+
+    margin-top:35px;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    color:#00ff66;
+
+    cursor:pointer;
+
+    text-shadow:
+    0 0 5px #00ff66,
+    0 0 15px #00ff66,
+    0 0 30px #00ff66;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:.7;
+    }
+
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   الصفحة الثانية
+========================= */
+
+#page2{
+
+    display:none;
+
+    min-height:100vh;
+
+    position:relative;
+
+    z-index:5;
+
+    padding:40px 20px 70px;
+
+    text-align:center;
+
+}
+
+
+.title{
+
+    color:#00ff66;
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    margin-bottom:45px;
+
+    text-shadow:
+    0 0 5px #00ff66,
+    0 0 15px #00ff66,
+    0 0 30px #00ff66;
+
+}
+
+
+/* =========================
+   كروت الصور
+========================= */
+
+.photo{
+
+    width:100%;
+
+    max-width:340px;
+
+    margin:0 auto 55px;
+
+}
+
+
+/* =========================
+   مربع الصورة
+========================= */
+
+.photo-box{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    padding:7px;
+
+    border-radius:20px;
+
+    background:#050505;
+
+    box-shadow:
+    0 0 20px rgba(0,255,100,.45),
+    0 0 60px rgba(0,255,100,.18);
+
+    overflow:hidden;
+
+}
+
+
+/* الإطار الثابت */
+
+.photo-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-3px;
+
+    border:2px solid rgba(0,255,100,.45);
+
+    border-radius:23px;
+
+    box-shadow:
+    0 0 10px rgba(0,255,100,.25);
+
+    pointer-events:none;
+
+    z-index:5;
+
+}
+
+
+/* =========================
+   الصورة
+========================= */
+
+.photo-box img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    display:block;
+
+    pointer-events:none;
+
+    -webkit-user-drag:none;
+
+}
+
+
+/* =========================
+   الغشاوة
+========================= */
+
+.image-cover{
+
+    position:absolute;
+
+    inset:7px;
+
+    border-radius:14px;
+
+    z-index:10;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+}
+
+
+.image-cover::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-30px;
+
+    background:
+    radial-gradient(
+        circle at 30% 40%,
+        rgba(255,255,255,.20),
+        transparent 25%
+    ),
+    radial-gradient(
+        circle at 70% 60%,
+        rgba(255,255,255,.16),
+        transparent 28%
+    ),
+    radial-gradient(
+        circle at 50% 50%,
+        rgba(0,0,0,.94),
+        rgba(0,0,0,.78)
+    );
+
+    filter:blur(12px);
+
+    transform:scale(1.1);
+
+}
+
+
+.image-cover::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.08),
+        transparent 35%,
+        rgba(0,0,0,.5)
+    );
+
+}
+
+
+/* =========================
+   زر المشاهدة
+========================= */
+
+.watch-button{
+
+    position:relative;
+
+    z-index:20;
+
+    padding:13px 22px;
+
+    border:1px solid rgba(0,255,100,.7);
+
+    border-radius:30px;
+
+    background:rgba(0,0,0,.75);
+
+    color:#00ff66;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    text-shadow:
+    0 0 7px #00ff66;
+
+    box-shadow:
+    0 0 15px rgba(0,255,100,.25);
+
+    backdrop-filter:blur(5px);
+
+}
+
+
+/* =========================
+   العداد
+========================= */
+
+.timer{
+
+    position:absolute;
+
+    top:12px;
+
+    left:12px;
+
+    z-index:30;
+
+    display:none;
+
+    padding:5px 10px;
+
+    border-radius:15px;
+
+    background:rgba(0,0,0,.8);
+
+    color:#00ff66;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    border:1px solid rgba(0,255,100,.4);
+
+}
+
+
+/* =========================
+   الكلام
+========================= */
+
+.love{
+
+    margin-top:25px;
+
+    color:#00ff66;
+
+    font-size:27px;
+
+    font-weight:bold;
+
+    text-shadow:
+    0 0 5px #00ff66,
+    0 0 15px #00ff66,
+    0 0 30px #00ff66;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+
+/* =========================
+   رجوع
+========================= */
+
+.back{
+
+    margin-top:10px;
+
+    color:#777;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================
+   موبايل
+========================= */
+
+@media(max-width:500px){
+
+    .main-image{
+
+        width:210px;
+
+        height:210px;
+
+    }
+
+    .click{
+
+        font-size:22px;
+
+    }
+
+    .photo{
+
+        max-width:310px;
+
+    }
+
+    .watch-button{
+
+        font-size:16px;
+
+        padding:12px 18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     خلفية الهكر
+========================= -->
+
+<div class="matrix">
+
+    <div class="code">
+        01010101<br>
+        SYSTEM ONLINE<br>
+        11001100<br>
+        ACCESS GRANTED<br>
+        10101010
+    </div>
+
+    <div class="code">
+        10101010<br>
+        LOVE SYSTEM<br>
+        00110011<br>
+        CONNECTING...<br>
+        01010101
+    </div>
+
+    <div class="code">
+        01010101<br>
+        HEART.exe<br>
+        11110000<br>
+        RUNNING...<br>
+        10101010
+    </div>
+
+    <div class="code">
+        11001100<br>
+        KIVEX SYSTEM<br>
+        01010101<br>
+        ONLINE<br>
+        00110011
+    </div>
+
+    <div class="code">
+        10101010<br>
+        FOREVER<br>
+        11111111<br>
+        VERIFIED<br>
+        01010101
+    </div>
+
+    <div class="code">
+        00110011<br>
+        LOVE.exe<br>
+        11001100<br>
+        ACTIVE<br>
+        01010101
+    </div>
+
+    <div class="code">
+        01010101<br>
+        HEART CONNECTED<br>
+        10101010<br>
+        ACCESS<br>
+        GRANTED
+    </div>
+
+    <div class="code">
+        11110000<br>
+        SYSTEM LOVE<br>
+        01010101<br>
+        00110011<br>
+        FOREVER
+    </div>
+
+</div>
+
+
+<!-- =========================
+     الصفحة الأولى
+========================= -->
+
+<section class="page" id="page1">
+
+    <div class="first-content">
+
+        <div class="main-image"
+             onclick="openPage()">
+
+            <img src="image.jpg" alt="">
+
+        </div>
+
+
+        <div class="click"
+             onclick="openPage()">
+
+            اضغط هنا
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     الصفحة الثانية
+========================= -->
+
+<section id="page2">
+
+    <div class="title">
+        والله انت صعبان عليا البت و اهلها مخزوقينك
+    </div>
+
+
+    <!-- الصورة 1 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image1.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            اتفرج وقولي رايك
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 2 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image14.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            صحيح هما قلولك انها بنت بنوت ولا
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 3 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image3.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 4 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image16.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            اي خدمه وريتك المصلحه قبل الجواز
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 5 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image5.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي بصراحه
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 6 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image6.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            مش ايدها دي برضه
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 7 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image7.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            طبعا انتا عارف كانت بتعمل اي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 8 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image8.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 9 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image9.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 10 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image10.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 11 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image11.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 12 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image12.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 13 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image13.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 14 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image2.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 15 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image15.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 16 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image4.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            قولي رايك بقي
+        </div>
+
+    </div>
+
+
+    <!-- الصورة 17 -->
+
+    <div class="photo">
+
+        <div class="photo-box">
+
+            <img src="image17.jpg" alt="">
+
+            <div class="image-cover"
+                 onclick="showImage(this)">
+
+                <div class="watch-button">
+                    اضغط لمشاهدة الصورة
+                </div>
+
+            </div>
+
+            <div class="timer">
+                5
+            </div>
+
+        </div>
+
+        <div class="love">
+            ابلع ي كسمك جنه الشرموطه
+        </div>
+
+    </div>
+
+
+    <div class="back"
+         onclick="backPage()">
+
+        رجوع
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   فتح الصفحة الثانية
+========================= */
+
+function openPage(){
+
+    document.getElementById("page1").style.display="none";
+
+    document.getElementById("page2").style.display="block";
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   رجوع
+========================= */
+
+function backPage(){
+
+    document.getElementById("page2").style.display="none";
+
+    document.getElementById("page1").style.display="flex";
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   حذف الصور المحفوظة
+========================= */
+
+function loadDeletedImages(){
+
+    let deleted = [];
+
+    try{
+
+        deleted =
+            JSON.parse(
+                localStorage.getItem("deletedImages") || "[]"
+            );
+
+    }catch(error){
+
+        deleted = [];
+
+    }
+
+
+    document.querySelectorAll(".photo").forEach(function(photo){
+
+        const image =
+            photo.querySelector("img");
+
+        if(!image){
+            return;
+        }
+
+        const imageName =
+            image.getAttribute("src");
+
+
+        if(deleted.includes(imageName)){
+
+            photo.remove();
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   مشاهدة الصورة
+   5 ثواني ثم حذف نهائي
+========================= */
+
+function showImage(cover){
+
+    if(!cover){
+        return;
+    }
+
+
+    /* منع الضغط مرتين */
+
+    if(cover.dataset.opened === "true"){
+        return;
+    }
+
+    cover.dataset.opened = "true";
+
+
+    const box =
+        cover.parentElement;
+
+    const photo =
+        box.parentElement;
+
+    const image =
+        box.querySelector("img");
+
+    const timer =
+        box.querySelector(".timer");
+
+
+    if(!image || !timer || !photo){
+        return;
+    }
+
+
+    const imageName =
+        image.getAttribute("src");
+
+
+    /* =========================
+       حفظ الصورة كمشاهدة
+    ========================= */
+
+    let deleted = [];
+
+    try{
+
+        deleted =
+            JSON.parse(
+                localStorage.getItem("deletedImages") || "[]"
+            );
+
+    }catch(error){
+
+        deleted = [];
+
+    }
+
+
+    if(!deleted.includes(imageName)){
+
+        deleted.push(imageName);
+
+        localStorage.setItem(
+            "deletedImages",
+            JSON.stringify(deleted)
+        );
+
+    }
+
+
+    /* =========================
+       إظهار الصورة
+    ========================= */
+
+    cover.style.display = "none";
+
+    timer.style.display = "block";
+
+
+    let seconds = 5;
+
+    const countdown =
+        setInterval(function(){
+
+            seconds--;
+
+            if(seconds > 0){
+
+                timer.textContent =
+                    "تختفي بعد " + seconds;
+
+            }
+
+        },1000);
+
+
+    /* =========================
+       بعد 5 ثواني
+    ========================= */
+
+    setTimeout(function(){
+
+        clearInterval(countdown);
+
+        photo.remove();
+
+    },5000);
+
+}
+
+
+/* =========================
+   تشغيل الحذف عند فتح الموقع
+========================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        loadDeletedImages();
+
+    }
+);
+
+
+/* =========================
+   منع القائمة
+========================= */
+
+document.addEventListener(
+    "contextmenu",
+    function(e){
+
+        e.preventDefault();
+
+    }
+);
+
+
+/* =========================
+   منع سحب الصور
+========================= */
+
+document.addEventListener(
+    "dragstart",
+    function(e){
+
+        e.preventDefault();
+
+    }
+);
+
+
+/* =========================
+   منع النسخ
+========================= */
+
+document.addEventListener(
+    "copy",
+    function(e){
+
+        e.preventDefault();
+
+    }
+);
+
+document.addEventListener(
+    "cut",
+    function(e){
+
+        e.preventDefault();
+
+    }
+);
+
+
+/* =========================
+   منع التكبير باللمس
+========================= */
+
+document.addEventListener(
+    "touchmove",
+    function(e){
+
+        if(e.touches.length > 1){
+
+            e.preventDefault();
+
+        }
+
+    },
+    {passive:false}
+);
+
+
+/* =========================
+   منع Double Tap Zoom
+========================= */
+
+let lastTouch = 0;
+
+document.addEventListener(
+    "touchend",
+    function(e){
+
+        const now =
+            Date.now();
+
+        if(now - lastTouch < 350){
+
+            e.preventDefault();
+
+        }
+
+        lastTouch = now;
+
+    },
+    {passive:false}
+);
+
+</script>
+
+</body>
+</html>
