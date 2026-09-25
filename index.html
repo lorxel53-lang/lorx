@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no">
+
+    <title>Ali Kivex</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="post.css">
+    <link rel="stylesheet" href="editor.css">
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         الشريط العلوي
+    ========================== -->
+
+    <div class="top-bar">
+
+        <div class="top-name">
+
+            <img
+                class="top-verified"
+                src="PUT_VERIFICATION_IMAGE_HERE.png"
+                alt="Verified">
+
+            Ali Kivex
+
+        </div>
+
+
+        <button
+            class="add-button"
+            id="add-button">
+
+            +
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         البوستات
+    ========================== -->
+
+    <div
+        class="posts-container"
+        id="posts-container">
+    </div>
+
+
+
+    <!-- =========================
+         صفحة إنشاء بوست
+    ========================== -->
+
+    <div
+        class="editor-page"
+        id="editor-page">
+
+
+        <div class="editor-actions">
+
+            <button
+                class="editor-button"
+                id="cancel-post">
+
+                No
+
+            </button>
+
+
+            <button
+                class="editor-button"
+                id="save-post">
+
+                حفظ
+
+            </button>
+
+        </div>
+
+
+
+        <!-- صورة البروفايل -->
+
+        <div class="editor-field profile-field">
+
+            <span>
+                أضف صورة بروفايل
+            </span>
+
+
+            <label class="profile-add">
+
+                إضافة
+
+                <input
+                    type="file"
+                    id="profile-input"
+                    accept="image/*">
+
+            </label>
+
+        </div>
+
+      <div class="editor-field profile-field">
+    <span>أضف فيديو للبوست</span>
+    <label class="profile-add">
+        إضافة
+        <input
+            type="file"
+            id="post-video-input"
+            accept="video/*">
+    </label>
+      </div>
+
+        <!-- الاسم -->
+
+        <div class="editor-field">
+
+            <input
+                type="text"
+                id="name-input"
+                placeholder="اسم المستخدم">
+
+        </div>
+
+      <div class="editor-field profile-field">
+    <span>أضف صورة للبوست</span>
+    <label class="profile-add">
+        إضافة
+        <input type="file" id="post-image-input" accept="image/*">
+    </label>
+      </div>
+
+        <!-- اليوزر -->
+
+        <div class="editor-field optional-field">
+
+            <input
+                type="text"
+                id="username-input"
+                placeholder="@username">
+
+
+            <label class="optional-check">
+
+                <input
+                    type="checkbox"
+                    id="username-check">
+
+                <span class="check-box">
+                    ✓
+                </span>
+
+            </label>
+
+        </div>
+
+
+
+        <!-- =========================
+             التوثيق
+        ========================== -->
+
+        <div class="editor-field verification-field">
+
+            <span>
+                تفعيل التوثيق
+            </span>
+
+
+            <label class="optional-check">
+
+                <input
+                    type="checkbox"
+                    id="verified-check">
+
+                <span class="check-box">
+                    ✓
+                </span>
+
+            </label>
+
+        </div>
+
+
+
+        <!-- مكان التوثيق -->
+
+        <div class="editor-field">
+
+            <select id="verified-position">
+
+                <option value="name">
+                    التوثيق جنب الاسم
+                </option>
+
+
+                <option value="username">
+                    التوثيق جنب اليوزر
+                </option>
+
+
+                <option value="profile">
+                    التوثيق على صورة البروفايل
+                </option>
+
+            </select>
+
+        </div>
+
+<!-- Story Ring -->
+
+<div class="editor-field">
+
+    <label>
+        Story Ring
+    </label>
+
+    <label class="switch-row">
+
+        <input
+            type="checkbox"
+            id="story-ring-check">
+
+        <span>
+            تفعيل
+        </span>
+
+    </label>
+
+</div>
+
+
+<div class="editor-field">
+
+    <label>
+        لون الحلقة الأول
+    </label>
+
+    <input
+        type="color"
+        id="story-color-1"
+        value="#ff00ff">
+
+</div>
+
+
+<div class="editor-field">
+
+    <label>
+        لون الحلقة الثاني
+    </label>
+
+    <input
+        type="color"
+        id="story-color-2"
+        value="#ff9900">
+
+</div>
+
+
+<div class="editor-field">
+
+    <label>
+        لون أبيض
+    </label>
+
+    <label class="switch-row">
+
+        <input
+            type="checkbox"
+            id="story-white-check">
+
+        <span>
+            أبيض
+        </span>
+
+    </label>
+
+</div>
+
+        <!-- لون التوثيق -->
+
+        <div class="editor-field">
+
+            <select id="verified-color">
+
+                <option value="normal">
+                    لون الصورة الطبيعي
+                </option>
+
+
+                <option value="white">
+                    أبيض
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- نص البوست -->
+
+        <div class="editor-field">
+
+            <textarea id="text-input" placeholder="اكتب بوست"></textarea>
+
+        </div>
+
+
+
+        <!-- اللينك -->
+
+        <div class="editor-field">
+
+            <input
+                type="url"
+                id="link-input"
+                placeholder="أضف لنك">
+
+        </div>
+
+
+
+        <!-- =========================
+             الفولوورز
+             بدون زر اختيار
+        ========================== -->
+
+        <div class="editor-field">
+
+            <input
+                type="text"
+                id="followers-input"
+                placeholder="كام فالو">
+
+        </div>
+
+
+
+        <!-- اللايكات -->
+
+        <div class="editor-field">
+
+            <input
+                type="text"
+                id="likes-input"
+                placeholder="لايكات">
+
+        </div>
+
+
+
+        <!-- التعليقات -->
+
+        <div class="editor-field">
+
+            <input
+                type="text"
+                id="posts-input"
+                placeholder="تعليقات">
+
+        </div>
+
+
+
+        <!-- الريبوست -->
+
+        <div class="editor-field">
+
+            <input
+                type="text"
+                id="reposts-input"
+                placeholder="Repost">
+
+        </div>
+
+
+
+        <!-- المشاركات -->
+
+        <div class="editor-field">
+
+            <input
+                type="text"
+                id="shares-input"
+                placeholder="مشاركة">
+
+        </div>
+
+
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>
