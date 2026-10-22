@@ -609,8 +609,8 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.45);
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(12px);
         }
 
@@ -621,9 +621,9 @@
         .favorites-box {
             position: relative;
             width: 100%;
-            max-width: 340px;
+            max-width: 430px;
             min-height: 180px;
-            padding: 28px 20px 20px;
+            padding: 28px 16px 20px;
             border-radius: 26px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(35px) saturate(160%);
@@ -672,9 +672,10 @@
             border-radius: 16px;
         }
 
+        /* ضمان بقاء البوست عريضاً وثابتمطابقاً تماماً للشاشة الرئيسية */
         .favorites-content .glass-post {
-            width: 100%;
-            max-width: 100%;
+            width: 390px !important;
+            max-width: 390px !important;
             margin: 0 auto;
         }
     </style>
@@ -1154,7 +1155,7 @@
                     saveFavoriteImage.textContent = "جاري معالجة الفيديو بسرعة...";
 
                     try {
-                        const scaleFactor = 1.5; // تم خفض الـ scale لتحسين الأداء والسرعة وعدم التعليق
+                        const scaleFactor = 1.5;
                         const padding = 40;
 
                         const baseCanvas = await html2canvas(activePostClone, {
@@ -1178,7 +1179,7 @@
                         const vw = videoRect.width * scaleFactor;
                         const vh = videoRect.height * scaleFactor;
 
-                        const stream = canvas.captureStream(30); // 30 إطار في الثانية لضمان سلاسة المعالجة وعدم الثقل
+                        const stream = canvas.captureStream(30);
                         const mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm" });
                         const chunks = [];
 
